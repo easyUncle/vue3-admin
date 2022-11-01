@@ -1,6 +1,7 @@
 module.exports = {
   // 可选类型
-  types: [{
+  types: [
+    {
       value: 'feat',
       name: '新增:    新的内容'
     },
