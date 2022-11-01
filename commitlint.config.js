@@ -17,7 +17,7 @@ module.exports = {
         'pref', // 性能优化
         'test', // 增加测试
         'chore', // 构建过程或辅助工具的变动
-        'ci', //持续集成修改
+        'ci', // 持续集成修改
         'revert', // 回退
         'build' // 打包
       ]
