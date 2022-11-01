@@ -15,9 +15,14 @@ export default {
     HelloWorld
   },
   created() {
-    ;[1, 2, 3].forEach(item => {
-      console.log(item)
-    })
+    ;[1, 2, 3]
+      .forEach(item => {
+        console.log(item)
+      })
+
+      [(2, 3)].forEach(item => {
+        console.log(item)
+      })
   }
 }
 </script>
