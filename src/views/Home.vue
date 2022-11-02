@@ -14,15 +14,6 @@ export default {
   components: {
     HelloWorld
   },
-  created() {
-    ;[1, 2, 3]
-      .forEach(item => {
-        console.log(item)
-      })
-
-      [(2, 3)].forEach(item => {
-        console.log(item)
-      })
-  }
+  created() {}
 }
 </script>
