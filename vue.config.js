@@ -8,8 +8,8 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'https://api.imooc-admin.lgdsunday.club/',
-        pathRewrite: { 
-          '^/api': '/api' 
+        pathRewrite: {
+          '^/api': '/api'
         },
         changeOrigin: true
       }
