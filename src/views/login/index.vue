@@ -28,12 +28,15 @@
         <el-input
           placeholder="password"
           name="password"
-          type="password"
+          :type="passwordType"
           v-model="loginForm.password"
         />
         <span class="show-pwd">
           <el-icon>
-            <svg-icon icon="eye" />
+            <svg-icon
+              @click="onChangePwdType"
+              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            />
           </el-icon>
         </span>
       </el-form-item>
@@ -54,6 +57,7 @@ const loginForm = ref({
   password: ''
 })
 
+// 表单验证规则
 const loginRules = ref({
   username: [
     {
@@ -70,6 +74,13 @@ const loginRules = ref({
     }
   ]
 })
+
+const passwordType = ref('password')
+
+// methods
+function onChangePwdType() {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
 </script>
 
 <style lang="scss" scoped>
