@@ -12,7 +12,6 @@
 <script setup>
 import { isExternal as external } from '@/utils/validate'
 import { computed, defineProps } from 'vue'
-
 const props = defineProps({
   className: {
     type: String,
