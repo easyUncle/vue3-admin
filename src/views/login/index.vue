@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules">
+    <el-form
+      class="login-form"
+      :model="loginForm"
+      :rules="loginRules"
+      ref="loginFormRef"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -41,7 +46,10 @@
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
@@ -51,13 +59,14 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
+import { useStore } from 'vuex'
 
 const loginForm = ref({
-  username: '',
-  password: ''
+  username: 'super-admin',
+  password: '123456'
 })
 
-// 表单验证规则
+//表单验证规则
 const loginRules = ref({
   username: [
     {
@@ -78,8 +87,26 @@ const loginRules = ref({
 const passwordType = ref('password')
 
 // methods
-function onChangePwdType() {
+
+// 处理明文密文切换
+const onChangePwdType = () => {
   passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
+// 登录
+const store = useStore()
+const loginFormRef = ref(null)
+const handleLogin = () => {
+  loginFormRef.value.validate(valid => {
+    if (!valid) {
+      return
+    }
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {})
+      .catch(err => {
+        console.log(err)
+      })
+  })
 }
 </script>
 
