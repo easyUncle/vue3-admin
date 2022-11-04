@@ -8,7 +8,7 @@
       <el-form-item prop="username">
         <span class="svg-container">
           <el-icon>
-            <avatar />
+            <svg-icon icon="user" />
           </el-icon>
         </span>
         <el-input placeholder="username" name="username" type="text" />
@@ -17,13 +17,13 @@
       <el-form-item prop="password">
         <span class="svg-container">
           <el-icon>
-            <avatar />
+            <svg-icon icon="password" />
           </el-icon>
         </span>
         <el-input placeholder="password" name="password" />
         <span class="show-pwd">
           <el-icon>
-            <avatar />
+            <svg-icon icon="eye" />
           </el-icon>
         </span>
       </el-form-item>
@@ -35,9 +35,7 @@
   </div>
 </template>
 
-<script setup>
-import { Avatar } from '@element-plus/icons'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
@@ -77,6 +75,7 @@ $cursor: #fff;
           padding: 12px 5px 12px 15px;
           color: $light_gray;
           height: 47px;
+          // 改变输入框光标颜色，同时又不改变输入框里面的内容的颜色
           caret-color: $cursor;
         }
       }

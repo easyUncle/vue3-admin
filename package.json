@@ -40,6 +40,7 @@
     "prettier": "^2.7.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
+    "svg-sprite-loader": "^6.0.9",
     "vue-cli-plugin-element-plus": "~0.0.13"
   },
   "config": {
