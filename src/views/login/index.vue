@@ -60,9 +60,10 @@
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 const loginForm = ref({
-  username: 'super-admin',
+  username: 'admin',
   password: '123456'
 })
 
@@ -95,6 +96,7 @@ const onChangePwdType = () => {
 // 登录
 const store = useStore()
 const loginFormRef = ref(null)
+const router = useRouter()
 const handleLogin = () => {
   loginFormRef.value.validate(valid => {
     if (!valid) {
@@ -102,7 +104,9 @@ const handleLogin = () => {
     }
     store
       .dispatch('user/login', loginForm.value)
-      .then(() => {})
+      .then(() => {
+        router.push('/')
+      })
       .catch(err => {
         console.log(err)
       })

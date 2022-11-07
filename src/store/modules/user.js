@@ -1,19 +1,27 @@
 import { login } from '@/api/user'
-import md5 from 'md5'
+import { getToken, setToken } from '../../utils/auth'
 
 export default {
   namespaced: true,
-  state: () => ({}),
-  mutations: {},
+  state: () => ({
+    token: getToken()
+  }),
+  mutations: {
+    SET_TOKEN(state, token) {
+      state.token = token
+    }
+  },
   actions: {
-    login(context, userInfo) {
+    login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         const { username, password } = userInfo
         login({
           username,
-          password: md5(password)
+          password
         })
           .then(data => {
+            commit('SET_TOKEN', data.token)
+            setToken(data.token)
             resolve()
           })
           .catch(err => {

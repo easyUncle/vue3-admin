@@ -2,6 +2,10 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const publicRoutes = [
   {
+    path: '/',
+    component: () => import('@/layout/index')
+  },
+  {
     path: '/login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
