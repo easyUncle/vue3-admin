@@ -1,9 +1,8 @@
 import axios from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import store from '../store'
-import { getToken } from './auth'
-// import { useStore } from 'vuex'
-// const store = useStore()
+import { checkIsTimeout, getToken } from './auth'
+
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
@@ -11,6 +10,10 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
+      if (checkIsTimeout()) {
+        store.dispatch('user/logout')
+        return Promise.reject(new Error('登录失效'))
+      }
       config.headers['X-Token'] = getToken()
     }
     return config
@@ -23,7 +26,6 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   res => {
     const { code, message, data } = res.data
-    console.log(code, message)
     if (code !== 20000) {
       ElMessage({
         type: 'error',
@@ -42,6 +44,7 @@ service.interceptors.response.use(
             type: 'warning'
           }
         ).then(() => {
+          store.dispatch('user/logout')
           // store.dispatch('user/resetToken').then(() => {
           //   location.reload()
           // })

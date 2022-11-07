@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="right-menu">
       <!-- 头像 -->
-      <el-dropdown>
+      <el-dropdown trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
             shape="square"
@@ -42,6 +42,11 @@
 
 <script setup>
 import {} from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
+const logout = () => {
+  store.dispatch('user/logout')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -59,7 +64,7 @@ import {} from 'vue'
     float: right;
     padding-right: 16px;
 
-    :deep(.avatar-container) {
+    :deep(.avatar-wrapper) {
       cursor: pointer;
       .avatar-wrapper {
         margin-top: 5px;

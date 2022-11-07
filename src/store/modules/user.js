@@ -1,5 +1,6 @@
 import { login, getUserInfo } from '@/api/user'
-import { getToken, setToken } from '../../utils/auth'
+import { getToken, removeToken, setTimestamp, setToken } from '../../utils/auth'
+import router from '@/router'
 
 export default {
   namespaced: true,
@@ -36,6 +37,8 @@ export default {
           .then(data => {
             commit('SET_TOKEN', data.token)
             setToken(data.token)
+            // 保存登入时间戳
+            setTimestamp()
             resolve()
           })
           .catch(err => {
@@ -68,6 +71,16 @@ export default {
           .catch(err => {
             reject(err)
           })
+      })
+    },
+    // 登出
+    logout({ commit }) {
+      return new Promise((resolve, reject) => {
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        removeToken()
+        router.push('/login')
+        resolve()
       })
     }
   }
