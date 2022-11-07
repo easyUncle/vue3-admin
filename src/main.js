@@ -5,6 +5,7 @@ import store from './store'
 import './styles/index.scss'
 import installElementPlus from './plugins/element'
 import installSvgIcon from './icons/index'
+import './permission'
 
 const app = createApp(App)
 installElementPlus(app)
