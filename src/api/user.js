@@ -11,3 +11,11 @@ export const login = data => {
     data
   })
 }
+
+export const getUserInfo = token => {
+  return request({
+    url: '/vue-element-admin/user/info',
+    method: 'get',
+    params: { token }
+  })
+}

@@ -1,14 +1,27 @@
 import axios from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import store from '../store'
+import { getToken } from './auth'
 // import { useStore } from 'vuex'
 // const store = useStore()
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
+service.interceptors.request.use(
+  config => {
+    if (store.getters.token) {
+      config.headers['X-Token'] = getToken()
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
 service.interceptors.response.use(
   res => {
-    console.log(res)
     const { code, message, data } = res.data
     console.log(code, message)
     if (code !== 20000) {

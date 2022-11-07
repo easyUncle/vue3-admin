@@ -1,17 +1,31 @@
-import { login } from '@/api/user'
+import { login, getUserInfo } from '@/api/user'
 import { getToken, setToken } from '../../utils/auth'
 
 export default {
   namespaced: true,
   state: () => ({
-    token: getToken()
+    token: getToken(),
+    userInfo: {}
   }),
   mutations: {
     SET_TOKEN(state, token) {
       state.token = token
+    },
+    SET_ROLES(state, roles) {
+      state.userInfo = roles
+    },
+    SET_NAME(state, name) {
+      state.name = name
+    },
+    SET_AVATAR(state, avatar) {
+      state.avatar = avatar
+    },
+    SET_INTRODUCTION(state, introduction) {
+      state.introduction = introduction
     }
   },
   actions: {
+    // 登入
     login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         const { username, password } = userInfo
@@ -23,6 +37,33 @@ export default {
             commit('SET_TOKEN', data.token)
             setToken(data.token)
             resolve()
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
+    // 获取用户信息
+    async getUserInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getUserInfo(state.token)
+          .then(res => {
+            if (!res) {
+              reject(new Error('Verification failed, please Login again.'))
+            }
+
+            const { roles, name, avatar, introduction } = res
+
+            // roles must be a non-empty array
+            if (!roles || roles.length <= 0) {
+              reject(new Error('getInfo: roles must be a non-null array!'))
+            }
+
+            commit('SET_ROLES', roles)
+            commit('SET_NAME', name)
+            commit('SET_AVATAR', avatar)
+            commit('SET_INTRODUCTION', introduction)
+            resolve(res)
           })
           .catch(err => {
             reject(err)
