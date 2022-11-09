@@ -20,7 +20,7 @@
 <script setup>
 import AppMain from './components/AppMain.vue'
 import Navbar from './components/Navbar.vue'
-import Sidebar from './components/Sidebar.vue'
+import Sidebar from './components/Sidebar'
 import variables from '@/styles/variables.scss'
 </script>
 

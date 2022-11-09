@@ -18,8 +18,20 @@ router.beforeEach(async (to, from, next) => {
       if (hasRole) {
         next()
       } else {
-        await store.dispatch('user/getUserInfo')
+        // try {
+        //   const { roles } = await store.dispatch('user/getUserInfo')
+        //   console.log(roles)
+        //   const accessRoutes = await store.dispatch(
+        //     'permission/generateRoutes',
+        //     roles
+        //   )
+        //   accessRoutes.forEach(route => {
+        //     router.addRoute(route)
+        //   });
         next()
+        // } catch (error) {
+        //   console.log(error)
+        // }
       }
     }
   } else {
