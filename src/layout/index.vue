@@ -1,5 +1,8 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="$store.getters.sidebarOpened ? 'openSidebar' : 'closeSidebar'"
+  >
     <!-- 左侧 menu -->
     <sidebar
       id="guide-sidebar"
@@ -41,5 +44,8 @@ import variables from '@/styles/variables.scss'
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+}
+.closeSidebar .fixed-header {
+  width: calc(100% - #{$closeSideBarWidth});
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <el-menu
-    :background-color="variables.menuBg"
-    :text-color="variables.menuText"
+    :background-color="$store.getters.cssVar.menuBg"
+    :text-color="$store.getters.cssVar.menuText"
     :unique-opened="true"
-    :active-text-color="variables.menuActiveText"
+    :active-text-color="$store.getters.cssVar.menuActiveText"
     :collapse-transition="false"
     :default-active="activeMenu"
+    :collapse="!$store.getters.sidebarOpened"
     mode="vertical"
+    class="el-menu-vertical-demo"
     router
   >
     <sidebar-item
@@ -19,7 +21,6 @@
 
 <script setup>
 import SidebarItem from './SidebarItem.vue'
-import variables from '@/styles/variables.scss'
 import { computed, defineProps } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { filterRoutes, generateRoutes } from '@/utils/route'
@@ -42,4 +43,9 @@ const activeMenu = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+</style>

@@ -32,13 +32,12 @@
 <script setup>
 import MenuItem from './MenuItem.vue'
 import { defineProps } from 'vue'
-const props = defineProps({
+defineProps({
   route: {
     type: Object,
     required: true
   }
 })
-console.log(props.route.path)
 </script>
 
 <style lang="scss" scoped></style>
