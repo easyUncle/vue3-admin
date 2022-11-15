@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
     <hamburger class="hamburger"></hamburger>
+    <!-- 面包屑 -->
+    <breadrumb></breadrumb>
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown trigger="click">
@@ -45,6 +47,7 @@
 import {} from 'vue'
 import { useStore } from 'vuex'
 import Hamburger from '@/components/hamburger'
+import Breadrumb from '@/components/breadrumb'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
