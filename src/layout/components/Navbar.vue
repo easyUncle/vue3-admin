@@ -4,6 +4,10 @@
     <!-- 面包屑 -->
     <breadrumb></breadrumb>
     <div class="right-menu">
+      <!-- 切换主题 -->
+      <theme-select class="right-menu-item"></theme-select>
+      <!-- 切换语言 -->
+      <language-select class="right-menu-item"></language-select>
       <!-- 头像 -->
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
@@ -15,11 +19,8 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <router-link to="/profile/index">
-              <el-dropdown-item>Profile</el-dropdown-item>
-            </router-link>
             <router-link to="/">
-              <el-dropdown-item>Dashboard</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.home') }}</el-dropdown-item>
             </router-link>
             <a
               target="_blank"
@@ -31,10 +32,9 @@
               target="_blank"
               href="https://panjiachen.github.io/vue-element-admin-site/#/"
             >
-              <el-dropdown-item>Docs</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              <span style="display: block">Log Out</span>
+              <span style="display: block">{{ $t('msg.navBar.logout') }}</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -44,10 +44,11 @@
 </template>
 
 <script setup>
-import {} from 'vue'
 import { useStore } from 'vuex'
 import Hamburger from '@/components/hamburger'
 import Breadrumb from '@/components/breadrumb'
+import LanguageSelect from '@/components/languageSelect'
+import ThemeSelect from '@/components/themeSelect'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
@@ -78,6 +79,15 @@ const logout = () => {
           --el-avatar-background-color: none;
           margin-right: 12px;
         }
+      }
+    }
+    :deep(.right-menu-item) {
+      display: inline-block;
+      font-size: 24px;
+      color: #5a5e66;
+      padding-right: 20px;
+      &:hover {
+        cursor: pointer;
       }
     }
   }

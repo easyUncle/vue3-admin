@@ -7,7 +7,8 @@
       ref="loginFormRef"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <language-select class="langSelect"></language-select>
       </div>
 
       <el-form-item prop="username">
@@ -50,18 +51,20 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click="handleLogin"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
     </el-form>
   </div>
 </template>
 
 <script setup>
+import LanguageSelect from '@/components/languageSelect/'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const loginForm = ref({
   username: 'admin',
   password: '123456'
@@ -73,7 +76,7 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: '用户名为必填项'
+      message: t('msg.login.usernameRule')
     }
   ],
   password: [
@@ -143,17 +146,22 @@ $cursor: #fff;
         display: inline-block;
         height: 47px;
         width: 85%;
-
-        input {
+        .el-input__wrapper {
+          width: 100%;
           background: transparent;
-          border: 0px;
-          // -webkit-appearance: none;
-          border-radius: 0px;
-          padding: 12px 5px 12px 15px;
-          color: $light_gray;
-          height: 47px;
-          // 改变输入框光标颜色，同时又不改变输入框里面的内容的颜色
-          caret-color: $cursor;
+          border: none;
+          box-shadow: none;
+          input {
+            background: transparent;
+            border: 0px;
+            // -webkit-appearance: none;
+            border-radius: 0px;
+            padding: 12px 5px 12px 15px;
+            color: $light_gray;
+            height: 47px;
+            // 改变输入框光标颜色，同时又不改变输入框里面的内容的颜色
+            caret-color: $cursor;
+          }
         }
       }
     }
@@ -174,6 +182,16 @@ $cursor: #fff;
         margin: 0px auto 40px auto;
         text-align: center;
         font-weight: bold;
+        height: 40px;
+        line-height: 40px;
+      }
+      :deep(.langSelect) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 24px;
+        color: #fff;
+        background: #fff;
       }
     }
   }

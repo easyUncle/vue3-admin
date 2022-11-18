@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 子集 menu 菜单 -->
-    <el-submenu
+    <el-sub-menu
       v-if="route.children && route.children.length > 0"
       :index="route.path"
     >
@@ -17,7 +17,7 @@
         :route="item"
         :key="item.path"
       ></sidebar-item>
-    </el-submenu>
+    </el-sub-menu>
     <!-- 具体菜单项 -->
     <el-menu-item v-else :index="route.path">
       <menu-item

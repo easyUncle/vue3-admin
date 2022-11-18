@@ -3,7 +3,7 @@
     <div class="logo">
       <logo :collapse="isCollapse"></logo>
     </div>
-    <el-scrollbar>
+    <el-scrollbar :style="{ background: $store.getters.cssVar.menuBg }">
       <sidebar-menu></sidebar-menu>
     </el-scrollbar>
   </div>

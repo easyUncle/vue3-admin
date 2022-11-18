@@ -55,8 +55,8 @@
       margin-right: 16px;
     }
 
-    .sub-el-icon {
-      margin-right: 12px;
+    .el-icon {
+      margin-right: 16px;
       margin-left: -2px;
     }
 
@@ -66,11 +66,11 @@
       width: 100% !important;
     }
 
-    .is-active > .el-submenu__title {
+    .is-active>.el-submenu__title {
       color: $subMenuActiveText !important;
     }
 
-    & .nest-menu .el-submenu > .el-submenu__title,
+    & .nest-menu .el-submenu>.el-submenu__title,
     & .el-submenu .el-menu-item {
       min-width: $sideBarWidth !important;
     }
@@ -102,10 +102,10 @@
       }
     }
 
-    .el-submenu {
+    .el-sub-menu {
       overflow: hidden;
 
-      & > .el-submenu__title {
+      &>.el-sub-menu__title {
         padding: 0 !important;
 
         .svg-icon {
@@ -116,8 +116,8 @@
           margin-left: 19px;
         }
 
-        .el-submenu__icon-arrow {
-          display: none;
+        .el-sub-menu__icon-arrow {
+          visibility: hidden;
         }
       }
     }
@@ -132,9 +132,10 @@
           display: inline-block;
         }
       }
-      .el-submenu {
-        & > .el-submenu__title {
-          & > span {
+
+      .el-sub-menu {
+        &>.el-sub-menu__title {
+          &>span {
             height: 0;
             width: 0;
             overflow: hidden;
@@ -151,6 +152,7 @@
   }
 
   .withoutAnimation {
+
     .main-container,
     .sidebar-container {
       transition: none;
@@ -159,19 +161,23 @@
 }
 
 .el-menu--vertical {
-  & > .el-menu {
-    .svg-icon {
-      margin-right: 16px;
-    }
+  &>.el-menu {
+    .svg-wrapper {
+      text-align: center;
 
-    .sub-el-icon {
-      margin-right: 12px;
-      margin-left: -2px;
+      // .svg-icon {
+      //   margin-right: 16px;
+      // }
+
+      // .el-icon {
+      //   margin-right: 16px;
+      // }
+
     }
   }
 
   // 菜单项过长时
-  > .el-menu--popup {
+  >.el-menu--popup {
     max-height: 100vh;
     overflow-y: auto;
 

@@ -10,10 +10,10 @@
             index === breadcrumbData.length - 1 ||
             item.redirect === 'noRedirect'
           "
-          >{{ item.meta.title }}</span
+          >{{ generateTitle(item.meta.title) }}</span
         >
         <a v-else @click="handleClick(item.path)" class="redirect">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</a>
       </el-breadcrumb-item>
     </transition-group>
@@ -21,9 +21,10 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { generateTitle } from '@/utils/i18n'
 
 const route = useRoute()
 const router = useRouter()
@@ -36,10 +37,9 @@ const getBreadcrumbData = () => {
   matched = matched.filter(item => item.meta && item.meta.title)
   const first = matched[0]
   if (!isHome(first)) {
-    matched = [{ path: '/', meta: { title: 'Profile' } }].concat(matched)
+    matched = [{ path: '/', meta: { title: 'profile' } }].concat(matched)
   }
   breadcrumbData.value = matched.filter(item => item.meta && item.meta.title)
-  console.log(breadcrumbData.value)
 }
 const isHome = item => {
   const title = item.meta && item.meta.title
@@ -62,7 +62,7 @@ watch(
   }
 )
 // 主题色切换
-const linkHoverColor = store.getters.cssVar.menuBg
+const linkHoverColor = computed(() => store.getters.cssVar.menuBg)
 </script>
 
 <style lang="scss" scoped>

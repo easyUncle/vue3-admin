@@ -8,7 +8,6 @@
     :default-active="activeMenu"
     :collapse="!$store.getters.sidebarOpened"
     mode="vertical"
-    class="el-menu-vertical-demo"
     router
   >
     <sidebar-item
@@ -36,6 +35,7 @@ const route = useRoute()
 const permissionRoutes = computed(() =>
   generateRoutes(filterRoutes(router.getRoutes()))
 )
+console.log(permissionRoutes.value)
 const activeMenu = computed(() => {
   const { path } = route
   console.log(path)
@@ -43,9 +43,4 @@ const activeMenu = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -24,7 +24,7 @@ defineProps({
 const logo = ref(
   'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
 )
-const title = ref('vue-element-admin')
+const title = ref('Esun-element-admin')
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/variables.scss';

@@ -21,10 +21,10 @@ export const constantRoutes = [
     children: [
       {
         path: '/profile',
-        name: 'Profile',
+        name: 'profile',
         component: () => import('@/views/profile/index'),
         meta: {
-          title: 'Profile',
+          title: 'profile',
           icon: 'el-icon-user'
         }
       }
@@ -53,7 +53,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/user/manage',
     meta: {
-      title: 'User',
+      title: 'user',
       icon: 'personnel',
       roles: ['admin', 'edictor']
     },
@@ -62,7 +62,7 @@ export const asyncRoutes = [
         path: '/user/manage',
         component: () => import('@/views/user-manage/index'),
         meta: {
-          title: 'UserManage',
+          title: 'userManage',
           icon: 'personnel-manage'
         }
       },
@@ -70,7 +70,7 @@ export const asyncRoutes = [
         path: '/user/role',
         component: () => import('@/views/role-list/index'),
         meta: {
-          title: 'RoleList',
+          title: 'roleList',
           icon: 'role',
           roles: ['admin']
         }
@@ -79,7 +79,7 @@ export const asyncRoutes = [
         path: '/user/permission',
         component: () => import('@/views/permission-list/index'),
         meta: {
-          title: 'PermissionList',
+          title: 'permissionList',
           icon: 'permission',
           roles: ['admin']
         }
@@ -91,7 +91,7 @@ export const asyncRoutes = [
         component: () => import('@/views/user-info/index'),
         hidden: true,
         meta: {
-          title: 'UserInfo'
+          title: 'userInfo'
         }
       },
       {
@@ -101,7 +101,7 @@ export const asyncRoutes = [
         component: () => import('@/views/import/index'),
         hidden: true,
         meta: {
-          title: 'ExcelImport'
+          title: 'excelImport'
         }
       }
     ]
@@ -111,7 +111,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/article/ranking',
     meta: {
-      title: 'Article',
+      title: 'article',
       icon: 'article'
     },
     children: [
@@ -119,7 +119,7 @@ export const asyncRoutes = [
         path: '/article/ranking',
         component: () => import('@/views/article-ranking/index'),
         meta: {
-          title: 'ArticleRanking',
+          title: 'articleRanking',
           icon: 'article-ranking'
         }
       },
@@ -128,14 +128,14 @@ export const asyncRoutes = [
         component: () => import('@/views/article-detail/index'),
         hidden: true,
         meta: {
-          title: 'ArticleDetail'
+          title: 'articleDetail'
         }
       },
       {
         path: '/article/create',
         component: () => import('@/views/article-create/index'),
         meta: {
-          title: 'ArticleCreate',
+          title: 'articleCreate',
           icon: 'article-create'
         }
       },
@@ -144,7 +144,7 @@ export const asyncRoutes = [
         component: () => import('@/views/article-create/index'),
         hidden: true,
         meta: {
-          title: 'ArticleEditor'
+          title: 'articleEditor'
         }
       }
     ]

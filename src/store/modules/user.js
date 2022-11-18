@@ -6,7 +6,8 @@ export default {
   namespaced: true,
   state: () => ({
     token: getToken(),
-    userInfo: {}
+    userInfo: {},
+    avatar: ''
   }),
   mutations: {
     SET_TOKEN(state, token) {

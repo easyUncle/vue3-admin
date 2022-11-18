@@ -1,14 +1,15 @@
 <template>
-  <i
-    v-if="icon && icon.includes('el-icon')"
-    class="sub-el-icon"
-    :class="icon"
-  ></i>
-  <svg-icon v-else :icon="icon"></svg-icon>
-  <span>{{ title }}</span>
+  <div v-if="icon && icon.includes('el-icon')" class="svg-wrapper">
+    <el-icon size="14"> <component :is="icon.split('-')[2]" /></el-icon>
+  </div>
+  <div v-else class="svg-wrapper">
+    <svg-icon :icon="icon"></svg-icon>
+  </div>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script setup>
+import { generateTitle } from '@/utils/i18n.js'
 import { defineProps } from 'vue'
 defineProps({
   icon: {
@@ -23,4 +24,11 @@ defineProps({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.svg-wrapper {
+  display: inline-block;
+  width: 30px;
+  vertical-align: middle;
+  text-align: center;
+}
+</style>
