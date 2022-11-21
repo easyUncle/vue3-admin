@@ -18,4 +18,8 @@ generateNewStyle(store.getters.mainColor).then(styleText => {
 })
 </script>
 
-<style></style>
+<style>
+/* .el-input__wrapper {
+  --el-select-input-focus-border-color: none !important;
+} */
+</style>

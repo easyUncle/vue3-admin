@@ -13,30 +13,56 @@
       @change="selectChange"
     >
       <el-option
-        v-for="item in 5"
-        :label="item"
-        :value="item"
-        :key="item"
+        v-for="option in searchOptions"
+        :label="option.item.title.join('>')"
+        :value="option.item.path"
+        :key="option.item.path"
       ></el-option>
     </el-select>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import Fuse from 'fuse.js'
+import { generateSearchPool } from './useFuse.js'
+import { useRouter } from 'vue-router'
+import { filterRoutes, generateRoutes } from '@/utils/route.js'
 
 const keyword = ref('')
 const isShow = ref(false)
 const headerSearchRef = ref(null)
+
 const toggle = () => {
   isShow.value = !isShow.value
   headerSearchRef.value.focus()
 }
+
+// 模糊搜索
+const router = useRouter()
+const searchPool = computed(() =>
+  generateSearchPool(generateRoutes(filterRoutes(router.getRoutes())))
+)
+const fuse = new Fuse(searchPool.value, {
+  minMatchCharLength: 1,
+  keys: [
+    {
+      name: 'title',
+      weight: 0.7
+    },
+    {
+      name: 'path',
+      weight: 0.3
+    }
+  ]
+})
+const searchOptions = ref([])
 const remoteMethod = query => {
-  console.log(query)
+  searchOptions.value = fuse.search(query)
 }
-const selectChange = () => {
-  console.log('selectChange')
+// 跳转路由
+const selectChange = path => {
+  router.push({ path })
 }
 </script>
 
@@ -58,19 +84,17 @@ const selectChange = () => {
     background: transparent;
     :deep(.el-input__wrapper) {
       padding: 0;
-      border: none;
-      box-shadow: none !important;
       border-bottom: 1px solid #d9d9d9;
       background-color: transparent;
+      border: none !important;
+      box-shadow: none !important;
       border-radius: 0;
       .el-input__inner {
         vertical-align: middle;
-        &:focus {
-          border: none;
-        }
       }
       &.is-focus {
         box-shadow: none !important;
+        border: none !important;
       }
       .el-input__suffix {
         display: none;

@@ -9,12 +9,12 @@ export function generateRoutes(routes, basePath = '') {
   routes.forEach(item => {
     // 不存在children,也不存在meta的,直接return
     if (isNull(item.children) && isNull(item.meta)) return false
-    // 存在children,不存在meta的,进入递归
+    // 存在一个children,不存在meta的,进入递归
     if (isNull(item.meta) && !isNull(item.children)) {
       res.push(...generateRoutes(item.children))
       return false
     }
-    // 不存在children,存在meta的
+    // 存在children,存在meta的; 存在meta,不存在children
     // 合并路径
     const routePath = path.resolve(basePath, item.path)
 
@@ -37,18 +37,7 @@ export function generateRoutes(routes, basePath = '') {
   return res
 }
 /**
- * 判断目标值为空对象或者空数组或null,undefined
- * @param {目标值} value
- * @returns
- */
-export function isNull(value) {
-  return (
-    !value || JSON.stringify(value) === '{}' || JSON.stringify(value) === '[]'
-  )
-}
-
-/**
- * 处理脱离层级的路由：某个一级路由为其他子路由，则剔除该一级路由，保留路由层级
+ * 处理脱离层级的路由：某个一级路由为其他子路由，则剔除该一级路由，保留路由层级(去掉重复路由，并且不改变路由层级)
  * @param {路由信息表} routes
  */
 export function filterRoutes(routes) {
@@ -72,4 +61,15 @@ export function getChildrenRoutes(routes) {
     }
   })
   return res
+}
+
+/**
+ * 判断目标值为空对象或者空数组或null,undefined
+ * @param {目标值} value
+ * @returns
+ */
+export function isNull(value) {
+  return (
+    !value || JSON.stringify(value) === '{}' || JSON.stringify(value) === '[]'
+  )
 }
