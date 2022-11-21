@@ -4,6 +4,10 @@
     <!-- 面包屑 -->
     <breadrumb></breadrumb>
     <div class="right-menu">
+      <!-- 搜索 -->
+      <head-search class="right-menu-item"></head-search>
+      <!-- 切换全屏 -->
+      <screen-full class="right-menu-item"></screen-full>
       <!-- 切换主题 -->
       <theme-select class="right-menu-item"></theme-select>
       <!-- 切换语言 -->
@@ -49,6 +53,8 @@ import Hamburger from '@/components/hamburger'
 import Breadrumb from '@/components/breadrumb'
 import LanguageSelect from '@/components/languageSelect'
 import ThemeSelect from '@/components/themeSelect'
+import ScreenFull from '@/components/screenFull'
+import HeadSearch from '@/components/headSearch'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
