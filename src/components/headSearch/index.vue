@@ -1,5 +1,5 @@
 <template>
-  <div class="head-search" :class="{ show: isShow }">
+  <div id="head-search" :class="{ show: isShow }">
     <svg-icon icon="search" class="search-icon" @click="toggle"></svg-icon>
     <el-select
       v-model="keyword"
@@ -67,7 +67,7 @@ const selectChange = path => {
 </script>
 
 <style lang="scss" scoped>
-.head-search {
+#head-search {
   font-size: 0 !important;
   .search-icon {
     cursor: pointer;
