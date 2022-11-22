@@ -38,7 +38,8 @@ const toggle = () => {
 }
 
 // 初始化模糊搜索
-let fuse = initFuse()
+let fuse
+initFuse().then(res => (fuse = res))
 const searchOptions = ref([])
 const remoteMethod = query => {
   searchOptions.value = fuse.search(query)
@@ -51,7 +52,9 @@ const selectChange = path => {
   })
 }
 // 监听国际化变化
-watchLangSwitch(() => (fuse = initFuse()))
+watchLangSwitch(() => {
+  initFuse().then(res => (fuse = res))
+})
 
 // 关闭弹窗
 const onClose = () => {
