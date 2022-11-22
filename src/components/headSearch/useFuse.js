@@ -23,7 +23,6 @@ export const generateSearchPool = (routes, res = [], prefixTitle = []) => {
       res = generateSearchPool(route.children, res, data.title)
     }
   })
-  console.log(res)
   return res
 }
 

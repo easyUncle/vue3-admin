@@ -30,7 +30,6 @@ export const generateColor = primary => {
   const colorMap = {
     primary
   }
-  console.log(formula)
   Object.keys(formula).forEach(key => {
     const value = formula[key].replace(/primary/gi, primary)
     colorMap[key] = '#' + rgbHex(color.convert(value))

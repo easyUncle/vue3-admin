@@ -1,6 +1,6 @@
 <template>
   <div id="head-search" :class="{ show: isShow }">
-    <svg-icon icon="search" class="search-icon" @click="toggle"></svg-icon>
+    <svg-icon icon="search" class="search-icon" @click.stop="toggle"></svg-icon>
     <el-select
       v-model="keyword"
       class="header-search-select"
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { initFuse } from './useFuse.js'
 import { useRouter } from 'vue-router'
 import { watchLangSwitch } from '@/i18n'
@@ -31,7 +31,7 @@ import { watchLangSwitch } from '@/i18n'
 const keyword = ref('')
 const isShow = ref(false)
 const headerSearchRef = ref(null)
-
+// 输入框切换
 const toggle = () => {
   isShow.value = !isShow.value
   headerSearchRef.value.focus()
@@ -52,6 +52,20 @@ const selectChange = path => {
 }
 // 监听国际化变化
 watchLangSwitch(() => (fuse = initFuse()))
+
+// 关闭弹窗
+const onClose = () => {
+  headerSearchRef.value.blur()
+  isShow.value = false
+  searchOptions.value = []
+}
+watch(isShow, newVal => {
+  if (newVal) {
+    document.body.addEventListener('click', onClose)
+  } else {
+    document.body.removeEventListener('click', onClose)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
