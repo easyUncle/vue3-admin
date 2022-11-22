@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n'
 import ZhLang from './lang/zh.js'
 import EnLang from './lang/en.js'
 import store from '@/store'
+import { watch } from 'vue'
 const messages = {
   zh: {
     msg: {
@@ -25,5 +26,17 @@ const i18n = createI18n({
   locale: initLocale(),
   messages
 })
+
+// 监听语言的变化
+export function watchLangSwitch(...cbs) {
+  watch(
+    () => store.getters.language,
+    newVal => {
+      cbs.forEach(cb => {
+        cb(newVal)
+      })
+    }
+  )
+}
 
 export default i18n

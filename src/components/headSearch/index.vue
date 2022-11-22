@@ -23,11 +23,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import Fuse from 'fuse.js'
-import { generateSearchPool } from './useFuse.js'
+import { ref } from 'vue'
+import { initFuse } from './useFuse.js'
 import { useRouter } from 'vue-router'
-import { filterRoutes, generateRoutes } from '@/utils/route.js'
+import { watchLangSwitch } from '@/i18n'
 
 const keyword = ref('')
 const isShow = ref(false)
@@ -38,32 +37,21 @@ const toggle = () => {
   headerSearchRef.value.focus()
 }
 
-// 模糊搜索
-const router = useRouter()
-const searchPool = computed(() =>
-  generateSearchPool(generateRoutes(filterRoutes(router.getRoutes())))
-)
-const fuse = new Fuse(searchPool.value, {
-  minMatchCharLength: 1,
-  keys: [
-    {
-      name: 'title',
-      weight: 0.7
-    },
-    {
-      name: 'path',
-      weight: 0.3
-    }
-  ]
-})
+// 初始化模糊搜索
+let fuse = initFuse()
 const searchOptions = ref([])
 const remoteMethod = query => {
   searchOptions.value = fuse.search(query)
 }
 // 跳转路由
+const router = useRouter()
 const selectChange = path => {
-  router.push({ path })
+  router.push({ path }).then(() => {
+    isShow.value = false
+  })
 }
+// 监听国际化变化
+watchLangSwitch(() => (fuse = initFuse()))
 </script>
 
 <style lang="scss" scoped>
