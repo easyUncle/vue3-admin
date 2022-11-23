@@ -1,5 +1,5 @@
 <template>
-  <div class="tagviews-container">
+  <div class="tagviews-container" id="guide-tags">
     <router-link
       class="tagviews-item"
       v-for="(tag, index) in $store.getters.tagViewsList"

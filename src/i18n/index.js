@@ -2,7 +2,6 @@ import { createI18n } from 'vue-i18n'
 import ZhLang from './lang/zh.js'
 import EnLang from './lang/en.js'
 import store from '@/store'
-import { watch } from 'vue'
 const messages = {
   zh: {
     msg: {

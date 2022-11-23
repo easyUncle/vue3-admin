@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" @command="selectTheme" v-bind="$attrs">
     <span class="el-dropdown-link">
-      <svg-icon icon="change-theme"></svg-icon>
+      <svg-icon icon="change-theme" id="guide-theme"></svg-icon>
     </span>
     <template #dropdown>
       <el-dropdown-menu>

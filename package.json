@@ -13,6 +13,7 @@
     "axios": "^1.1.3",
     "core-js": "^3.6.5",
     "css-color-function": "^1.3.3",
+    "driver.js": "^0.9.8",
     "element-plus": "^2.2.21",
     "fuse.js": "^6.6.2",
     "md5": "^2.3.0",

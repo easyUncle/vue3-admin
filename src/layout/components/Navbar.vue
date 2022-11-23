@@ -4,6 +4,8 @@
     <!-- 面包屑 -->
     <breadrumb></breadrumb>
     <div class="right-menu">
+      <!-- 引导 -->
+      <guide class="right-menu-item"></guide>
       <!-- 搜索 -->
       <head-search class="right-menu-item"></head-search>
       <!-- 切换全屏 -->
@@ -55,6 +57,7 @@ import LanguageSelect from '@/components/languageSelect'
 import ThemeSelect from '@/components/themeSelect'
 import ScreenFull from '@/components/screenFull'
 import HeadSearch from '@/components/headSearch'
+import Guide from '@/components/guide'
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
@@ -91,7 +94,7 @@ const logout = () => {
       display: inline-block;
       font-size: 24px;
       color: #5a5e66;
-      padding-right: 20px;
+      margin-right: 20px;
       &:hover {
         cursor: pointer;
       }

@@ -3,6 +3,7 @@
     <svg-icon
       :icon="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
       @click="toggle"
+      id="guide-full"
     ></svg-icon>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" id="guide-sidebar">
     <div class="logo">
       <logo :collapse="isCollapse"></logo>
     </div>

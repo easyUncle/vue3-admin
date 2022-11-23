@@ -1,6 +1,11 @@
 <template>
   <div id="head-search" :class="{ show: isShow }">
-    <svg-icon icon="search" class="search-icon" @click.stop="toggle"></svg-icon>
+    <svg-icon
+      icon="search"
+      class="search-icon"
+      @click.stop="toggle"
+      id="guide-search"
+    ></svg-icon>
     <el-select
       v-model="keyword"
       class="header-search-select"
