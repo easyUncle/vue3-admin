@@ -27,16 +27,4 @@ const i18n = createI18n({
   messages
 })
 
-// 监听语言的变化
-export function watchLangSwitch(...cbs) {
-  watch(
-    () => store.getters.language,
-    newVal => {
-      cbs.forEach(cb => {
-        cb(newVal)
-      })
-    }
-  )
-}
-
 export default i18n

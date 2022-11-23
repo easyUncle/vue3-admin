@@ -23,10 +23,10 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { initFuse } from './useFuse.js'
 import { useRouter } from 'vue-router'
-import { watchLangSwitch } from '@/i18n'
+import { watchLangSwitch } from '@/utils/i18n.js'
 
 const keyword = ref('')
 const isShow = ref(false)

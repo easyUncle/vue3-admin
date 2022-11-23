@@ -28,3 +28,5 @@ export const COLOR_PICKER = [
 export const DEFAULT_COLOR = '#2d3a4b'
 // 主色
 export const MAIN_COLOR = 'main_color'
+// tagviews
+export const TAGS_VIEWS = 'tagViews'
