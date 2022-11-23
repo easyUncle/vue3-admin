@@ -1,6 +1,11 @@
 <template>
   <div class="app-main">
-    <router-view></router-view>
+    <!-- https://router.vuejs.org/zh/guide/advanced/transitions.html -->
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade-transform" mode="out-in">
+        <component :is="Component" :key="route.path"></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
