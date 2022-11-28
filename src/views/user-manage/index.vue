@@ -1,69 +1,79 @@
 <template>
-  <div>
-    <el-form label-position="right" label-width="100px" :model="formData">
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="国家地区：" :style="{ width: '300px' }">
-            <el-input v-model="formData.region" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="日期：">
-            <el-date-picker
-              v-model="formData.date"
-              type="daterange"
-              range-separator="至"
-              start-placeholder="Start date"
-              end-placeholder="End date"
+  <div id="userManage">
+    <el-card class="header">
+      <div>
+        <el-button type="primary"> {{ $t('msg.excel.importExcel') }}</el-button>
+        <el-button type="success">
+          {{ $t('msg.excel.exportExcel') }}
+        </el-button>
+      </div>
+    </el-card>
+    <el-card class="list">
+      <el-table :data="listData" border style="width: 100%">
+        <el-table-column type="index" />
+        <el-table-column
+          prop="name"
+          :label="$t('msg.excel.name')"
+          width="180"
+        />
+        <el-table-column
+          prop="mobile"
+          :label="$t('msg.excel.mobile')"
+          width="180"
+        />
+        <el-table-column :label="$t('msg.excel.avatar')" align="center">
+          <template v-slot="{ row }">
+            <el-image
+              class="avatar"
+              :preview-src-list="[row.avatar]"
+              :src="row.avatar"
             />
-          </el-form-item>
-        </el-col>
-      </el-row>
-    </el-form>
-    <el-table :data="tableData" border style="width: 100%" fit>
-      <el-table-column prop="country" label="国家" />
-      <el-table-column prop="date" label="日期" />
-      <el-table-column label="操作">
-        <template #default="scope">
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-            >删除</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
+          </template>
+        </el-table-column>
+        <el-table-column :label="$t('msg.excel.openTime')">
+          <template #default="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
+        </el-table-column>
+        <el-table-column
+          :label="$t('msg.excel.action')"
+          fixed="right"
+          width="260"
+        >
+          <template #default>
+            <el-button type="primary" size="small">{{
+              $t('msg.excel.show')
+            }}</el-button>
+            <el-button type="danger" size="small">{{
+              $t('msg.excel.remove')
+            }}</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
   </div>
 </template>
 
 <script setup>
+import { getUserManageList } from '@/api/user-manage.js'
 import { ref } from 'vue'
-const formData = ref({
-  region: '',
-  date: ''
-})
-const tableData = ref([
-  {
-    country: '中国',
-    date: '20222.12.12'
-  },
-  {
-    country: '中国',
-    date: '20222.12.12'
-  },
-  {
-    country: '中国',
-    date: '20222.12.12'
-  },
-  {
-    country: '中国',
-    date: '20222.12.12'
-  }
-])
-const handleDelete = (index, row) => {
-  console.log(index, row)
+const listData = ref([])
+const getListData = async () => {
+  const res = await getUserManageList()
+  listData.value = res
+  console.log(res)
 }
+getListData()
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#userManage {
+  .header {
+    margin-bottom: 20px;
+  }
+  :deep(.avatar) {
+    width: 50px;
+    height: 50px;
+  }
+}
+</style>
