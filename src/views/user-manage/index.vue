@@ -2,7 +2,9 @@
   <div id="userManage">
     <el-card class="header">
       <div>
-        <el-button type="primary"> {{ $t('msg.excel.importExcel') }}</el-button>
+        <el-button type="primary" @click="onImportExcelClick">
+          {{ $t('msg.excel.importExcel') }}</el-button
+        >
         <el-button type="success">
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
@@ -57,6 +59,8 @@
 <script setup>
 import { getUserManageList } from '@/api/user-manage.js'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const listData = ref([])
 const getListData = async () => {
   const res = await getUserManageList()
@@ -64,6 +68,10 @@ const getListData = async () => {
   console.log(res)
 }
 getListData()
+
+const onImportExcelClick = () => {
+  router.push({ path: '/user/import' })
+}
 </script>
 
 <style lang="scss" scoped>
