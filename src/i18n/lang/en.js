@@ -21,7 +21,6 @@ export default {
   route: {
     profile: 'Profile',
     user: 'User',
-    excelImport: 'ExcelImport',
     userManage: 'EmployeeManage',
     userInfo: 'UserInfo',
     roleList: 'RoleList',
@@ -30,7 +29,10 @@ export default {
     articleRanking: 'ArticleRanking',
     articleCreate: 'ArticleCreate',
     articleDetail: 'ArticleDetail',
-    articleEditor: 'ArticleEditor'
+    articleEditor: 'ArticleEditor',
+    excel: 'Excel',
+    exportExcel: 'ExportExcel',
+    uploadExcel: 'UploadExcel'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

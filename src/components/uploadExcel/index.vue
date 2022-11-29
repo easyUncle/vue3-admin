@@ -9,9 +9,9 @@
     />
     <div
       class="drop"
-      @drop="handleDrop"
-      @dragover="handleDragover"
-      @dragenter="handleDragover"
+      @drop.stop.prevent="handleDrop"
+      @dragover.stop.prevent="handleDragover"
+      @dragenter.stop.prevent="handleDragover"
     >
       {{ $t('msg.uploadExcel.drop') }}
       <el-button
@@ -30,7 +30,8 @@
 <script setup>
 import { ref, defineProps } from 'vue'
 import * as XLSX from 'xlsx'
-import { getHeaderRow } from '@/utils/excel.js'
+import { getHeaderRow, isExcel } from '@/utils/excel.js'
+import { ElMessage } from 'element-plus'
 const props = defineProps({
   beforeUpload: Function,
   onSuccess: Function
@@ -62,10 +63,36 @@ const upload = rawFile => {
   }
 }
 /**
+ * 被拖拉的节点或选中的文本，释放到目标节点时，在目标节点上触发
+ */
+const handleDrop = e => {
+  if (loading.value) {
+    return
+  }
+  const fileList = e.dataTransfer.files
+  if (fileList.length < 1) {
+    ElMessage.error('文件不能为空！！！')
+    return
+  }
+  const rawFile = fileList[0]
+  if (!isExcel(rawFile)) {
+    ElMessage.error('文件必须是 .xlsx, .xls, .csv 格式')
+    return false
+  }
+  upload(rawFile)
+}
+/**
+ * 拖拽悬停时触发
+ */
+const handleDragover = e => {
+  e.dataTransfer.dropEffect = 'copy'
+}
+/**
  * 读取数据(异步)
  */
 const readData = file => {
-  return new Promise((resolve, reject) => {
+  loading.value = true
+  return new Promise(resolve => {
     const reader = new FileReader()
     reader.onload = e => {
       // 1.获取表格数据
@@ -83,6 +110,7 @@ const readData = file => {
       const worksheet = XLSX.utils.sheet_to_json(firstSheet)
       // 7.生成数据
       generateData({ header, worksheet })
+      resolve()
     }
     // 启动读取数据
     reader.readAsArrayBuffer(file)
@@ -94,6 +122,7 @@ const readData = file => {
 const generateData = data => {
   const { onSuccess } = props
   onSuccess && onSuccess(data)
+  loading.value = false
 }
 const handleUpload = () => {
   excelUploadInput.value.click()

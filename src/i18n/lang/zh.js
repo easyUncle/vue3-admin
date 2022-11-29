@@ -21,7 +21,6 @@ export default {
   route: {
     profile: '个人中心',
     user: '用户',
-    excelImport: 'Excel导入',
     userManage: '员工管理',
     userInfo: '员工信息',
     roleList: '角色列表',
@@ -30,7 +29,10 @@ export default {
     articleRanking: '文章排名',
     articleCreate: '创建文章',
     articleDetail: '文章详情',
-    articleEditor: '文章编辑'
+    articleEditor: '文章编辑',
+    excel: 'Excel',
+    exportExcel: 'Excel导入',
+    uploadExcel: 'Excel导出'
   },
   toast: {
     switchLangSuccess: '切换语言成功'

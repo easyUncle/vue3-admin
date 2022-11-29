@@ -93,15 +93,34 @@ export const asyncRoutes = [
         meta: {
           title: 'userInfo'
         }
+      }
+    ]
+  },
+  {
+    // 不显示在导航栏之中
+    path: '/excel',
+    name: 'excel',
+    component: Layout,
+    redirect: '/excel/export-excel',
+    meta: {
+      title: 'excel',
+      icon: 'excel',
+      roles: ['admin', 'edictor']
+    },
+    children: [
+      {
+        path: '/excel/export-excel',
+        component: () => import('@/views/excel/ExportExcel'),
+        name: 'ExportExcel',
+        meta: { title: 'exportExcel', icon: 'export-excel' }
       },
       {
-        // 不显示在导航栏之中
-        path: '/user/import',
-        name: 'import',
-        component: () => import('@/views/import/index'),
-        hidden: true,
+        path: '/excel/upload-excel',
+        name: 'uploadExcel',
+        component: () => import('@/views/excel/UploadExcel'),
         meta: {
-          title: 'excelImport'
+          title: 'uploadExcel',
+          icon: 'upload-excel'
         }
       }
     ]
