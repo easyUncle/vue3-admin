@@ -32,7 +32,9 @@ export default {
     articleEditor: 'ArticleEditor',
     excel: 'Excel',
     exportExcel: 'ExportExcel',
-    uploadExcel: 'UploadExcel'
+    uploadExcel: 'UploadExcel',
+    selectExcel: 'SelectExcel',
+    mergeHeaderExcel: 'MergeHeaderExcel'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

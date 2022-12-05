@@ -31,8 +31,10 @@ export default {
     articleDetail: '文章详情',
     articleEditor: '文章编辑',
     excel: 'Excel',
-    exportExcel: 'Excel导入',
-    uploadExcel: 'Excel导出'
+    exportExcel: 'Excel导出',
+    uploadExcel: 'Excel导入',
+    selectExcel: 'Excel选择导出',
+    mergeHeaderExcel: 'Excel合并表头'
   },
   toast: {
     switchLangSuccess: '切换语言成功'
