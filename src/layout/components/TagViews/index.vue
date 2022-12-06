@@ -1,40 +1,47 @@
 <template>
   <div class="tagviews-container" id="guide-tags">
-    <router-link
-      class="tagviews-item"
-      v-for="(tag, index) in $store.getters.tagViewsList"
-      :key="tag.path"
-      :to="tag.path"
-      :class="isActive(tag) ? 'active' : ''"
-      :style="{
-        background: isActive(tag) ? $store.getters.cssVar.menuBg : '',
-        borderColor: isActive(tag) ? $store.getters.cssVar.menuBg : ''
-      }"
-      @contextmenu.prevent="openMenu($event, index)"
-      >{{ tag.title }}
-      <el-icon class="close-icon" @click.stop.prevent="onCloseClick(tag, index)"
-        ><Close
-      /></el-icon>
-    </router-link>
-    <context-menu
-      v-show="visiable"
-      :style="menuStyle"
-      :index="selectIndex"
-      @refresh="onMenuRefresh"
-      @closeCurrent="onMenuCloseCurrent"
-      @closeRight="onMenuCloseRight"
-      @closeAll="onMenuCloseAll"
-      @closeOther="onMenuCloseOther"
-    ></context-menu>
+    <scroll-pane ref="scrollPaneRef">
+      <router-link
+        class="tagviews-item"
+        v-for="(tag, index) in $store.getters.tagViewsList"
+        ref="tagRef"
+        :key="tag.path"
+        :to="tag.path"
+        :index="index"
+        :class="isActive(tag) ? 'active' : ''"
+        :style="{
+          background: isActive(tag) ? $store.getters.cssVar.menuBg : '',
+          borderColor: isActive(tag) ? $store.getters.cssVar.menuBg : ''
+        }"
+        @contextmenu.prevent="openMenu($event, index)"
+        >{{ tag.title }}
+        <el-icon
+          class="close-icon"
+          @click.stop.prevent="onCloseClick(tag, index)"
+          ><Close
+        /></el-icon>
+      </router-link>
+      <context-menu
+        v-show="visiable"
+        :style="menuStyle"
+        :index="selectIndex"
+        @refresh="onMenuRefresh"
+        @closeCurrent="onMenuCloseCurrent"
+        @closeRight="onMenuCloseRight"
+        @closeAll="onMenuCloseAll"
+        @closeOther="onMenuCloseOther"
+      ></context-menu>
+    </scroll-pane>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import store from '../../../store'
+import { useStore } from 'vuex'
 import ContextMenu from './ContextMenu.vue'
-
+import ScrollPane from './ScrollPane'
+const store = useStore()
 const route = useRoute()
 const router = useRouter()
 /**
@@ -135,6 +142,30 @@ const onMenuCloseAll = () => {
   store.commit('app/removeTagView', {
     type: 'all',
     index: selectIndex.value
+  })
+}
+/**
+ * 滚动到当前的tagview
+ */
+const scrollPaneRef = ref(null)
+const tagRef = ref(null)
+watch(
+  route,
+  () => {
+    scrollToCurrent()
+  },
+  {
+    // immediate: true
+  }
+)
+const scrollToCurrent = async () => {
+  await nextTick()
+  const tagList = tagRef.value
+  const currentRoute = route
+  tagList.forEach(tag => {
+    if (currentRoute.path === tag.to) {
+      scrollPaneRef.value.scrollToTarget(tag, tagList)
+    }
   })
 }
 </script>
