@@ -23,7 +23,7 @@
           </template>
         </el-table-column>
         <el-table-column :label="$t('msg.excel.openTime')">
-          <template #default="{ row }">
+          <template v-slot="{ row }">
             {{ $filters.dateFilter(row.openTime) }}
           </template>
         </el-table-column>
@@ -32,8 +32,8 @@
           fixed="right"
           width="260"
         >
-          <template #default>
-            <el-button type="primary" size="small">{{
+          <template v-slot="{ row }">
+            <el-button type="primary" size="small" @click="gotoDetail(row)">{{
               $t('msg.excel.show')
             }}</el-button>
             <el-button type="danger" size="small">{{
@@ -51,10 +51,15 @@ import { getUserManageList } from '@/api/user-manage.js'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const listData = ref([])
+const router = useRouter()
 const getListData = async () => {
   const res = await getUserManageList()
   listData.value = res
   console.log(res)
+}
+const gotoDetail = row => {
+  const { id } = row
+  router.push(`/user/info/${id}`)
 }
 getListData()
 </script>

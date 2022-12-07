@@ -6,6 +6,7 @@ const routes = deepClone([...constantRoutes, ...asyncRoutes])
 
 const roles = [
   {
+    id: '1',
     key: 'admin',
     name: 'admin',
     description: 'Super Administrator. Have access to view all pages.',
@@ -16,6 +17,7 @@ const roles = [
     routes: routes
   },
   {
+    id: '2',
     key: 'editor',
     name: 'editor',
     mobile: '13420111353',
@@ -26,6 +28,7 @@ const roles = [
     routes: routes.filter(i => i.path !== '/permission') // just a mock
   },
   {
+    id: '3',
     key: 'visitor',
     name: 'visitor',
     mobile: '13420111353',

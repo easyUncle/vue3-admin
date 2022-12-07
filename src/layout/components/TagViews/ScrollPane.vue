@@ -17,6 +17,7 @@ const scrollToTarget = async (tag, tagList) => {
   const scrollRefVal = scrollRef.value
 
   const currentIndex = tagList.findIndex(item => item === tag)
+
   if (currentIndex === 0) {
     scrollRefVal.scrollTo(0, 0)
   } else if (currentIndex === tagList.length - 1) {

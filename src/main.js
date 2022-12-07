@@ -9,10 +9,12 @@ import './permission'
 import i18n from '@/i18n'
 import installElIcon from './plugins/el-icon'
 import installFilters from './filters'
+import installDerective from './derective'
 
 const app = createApp(App)
 installElementPlus(app)
 installSvgIcon(app)
 installElIcon(app)
 installFilters(app)
+installDerective(app)
 app.use(store).use(router).use(i18n).mount('#app')
