@@ -30,7 +30,7 @@
         <el-table-column
           :label="$t('msg.excel.action')"
           fixed="right"
-          width="260"
+          width="320"
         >
           <template v-slot="{ row }">
             <el-button type="primary" size="small" @click="gotoDetail(row)">{{
@@ -42,6 +42,7 @@
             <el-button
               type="danger"
               size="small"
+              v-permission="'distributePermission'"
               @click="onDistributePermissionClick(row)"
               >{{ $t('msg.role.assignPermissions') }}</el-button
             >

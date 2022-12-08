@@ -8,7 +8,8 @@ export default {
   state: () => ({
     token: getToken(),
     userInfo: {},
-    avatar: ''
+    avatar: '',
+    points: []
   }),
   mutations: {
     SET_TOKEN(state, token) {
@@ -25,6 +26,9 @@ export default {
     },
     SET_INTRODUCTION(state, introduction) {
       state.introduction = introduction
+    },
+    SET_POINTS(state, points) {
+      state.points = points
     }
   },
   actions: {
@@ -57,7 +61,7 @@ export default {
               reject(new Error('Verification failed, please Login again.'))
             }
 
-            const { roles, name, avatar, introduction } = res
+            const { roles, name, avatar, introduction, point } = res
 
             // roles must be a non-empty array
             if (!roles || roles.length <= 0) {
@@ -68,6 +72,7 @@ export default {
             commit('SET_NAME', name)
             commit('SET_AVATAR', avatar)
             commit('SET_INTRODUCTION', introduction)
+            commit('SET_POINTS', point)
             resolve(res)
           })
           .catch(err => {

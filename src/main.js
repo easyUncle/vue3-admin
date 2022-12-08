@@ -9,7 +9,7 @@ import './permission'
 import i18n from '@/i18n'
 import installElIcon from './plugins/el-icon'
 import installFilters from './filters'
-import installDerective from './derective'
+import installDerective from './directive'
 
 const app = createApp(App)
 installElementPlus(app)
