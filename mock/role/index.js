@@ -40,12 +40,12 @@ const roles = [
     routes: [
       {
         path: '',
-        redirect: 'dashboard',
+        redirect: '/profile',
         children: [
           {
-            path: 'dashboard',
-            name: 'Dashboard',
-            meta: { title: 'dashboard', icon: 'dashboard' }
+            path: '/profile',
+            name: 'profile',
+            meta: { title: 'profile', icon: 'profile' }
           }
         ]
       }

@@ -18,6 +18,7 @@
     "element-plus": "^2.2.21",
     "file-saver": "^2.0.5",
     "fuse.js": "^6.6.2",
+    "lodash": "^4.17.21",
     "md5": "^2.3.0",
     "pinyin": "^3.0.0-alpha.4",
     "rgb-hex": "^4.0.0",

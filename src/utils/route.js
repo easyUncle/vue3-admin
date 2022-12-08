@@ -73,3 +73,20 @@ export function isNull(value) {
     !value || JSON.stringify(value) === '{}' || JSON.stringify(value) === '[]'
   )
 }
+/**
+ * 扁平化数组
+ */
+
+export function flatterRoutes(routes) {
+  let data = []
+  routes.forEach(route => {
+    data.push(route)
+    if (route.children.length) {
+      const temp = flatterRoutes(route.children)
+      if (temp.length) {
+        data = [...data, ...temp]
+      }
+    }
+  })
+  return data
+}
