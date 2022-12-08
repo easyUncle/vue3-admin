@@ -6,6 +6,7 @@ const getters = {
   introduction: state => state.user.introduction,
   roles: state => state.user.roles,
   permissionRoutes: state => state.permission.routes,
+  addRoutes: state => state.permission.addRoutes,
   cssVar: state => state.theme.cssVar,
   sidebarOpened: state => state.app.sidebarOpened,
   language: state => state.app.language,

@@ -25,8 +25,11 @@ export function filterAsyncRoutes(routes, roles) {
     const tmp = {
       ...route
     }
-    if (hasPermission(tmp, roles) && tmp.children) {
-      tmp.children = filterAsyncRoutes(tmp.children, roles)
+
+    if (hasPermission(tmp, roles)) {
+      if (tmp.children) {
+        tmp.children = filterAsyncRoutes(tmp.children, roles)
+      }
       res.push(tmp)
     }
   })
@@ -41,13 +44,12 @@ const state = {
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+    state.routes = [...constantRoutes, ...routes]
   }
 }
 
 const actions = {
   generateRoutes({ commit }, roles) {
-    console.log(roles)
     return new Promise(resolve => {
       let accessRoutes
       if (roles.includes('admin')) {
@@ -55,6 +57,7 @@ const actions = {
       } else {
         accessRoutes = filterAsyncRoutes(asyncRoutes, roles)
       }
+      console.log(accessRoutes)
       commit('SET_ROUTES', accessRoutes)
       resolve(accessRoutes)
     })

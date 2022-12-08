@@ -59,8 +59,9 @@ import ScreenFull from '@/components/screenFull'
 import HeadSearch from '@/components/headSearch'
 import Guide from '@/components/guide'
 const store = useStore()
-const logout = () => {
-  store.dispatch('user/logout')
+const logout = async () => {
+  await store.dispatch('user/logout')
+  store.commit('app/removeTagView', { type: 'all' })
 }
 </script>
 

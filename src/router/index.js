@@ -1,11 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout'
+import store from '../store'
 /**
  * 公开路由
  */
 export const constantRoutes = [
   {
     path: '/login',
+    name: 'login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -18,6 +20,7 @@ export const constantRoutes = [
     // 注意：带有路径“/”的记录中的组件“默认”是一个不返回 Promise 的函数
     component: Layout,
     redirect: '/profile',
+    name: 'profile',
     children: [
       {
         path: '/profile',
@@ -52,14 +55,16 @@ export const asyncRoutes = [
     path: '/user',
     component: Layout,
     redirect: '/user/manage',
+    name: 'user',
     meta: {
       title: 'user',
       icon: 'personnel',
-      roles: ['admin', 'edictor']
+      roles: ['admin', 'editor']
     },
     children: [
       {
         path: '/user/manage',
+        name: 'userManage',
         component: () => import('@/views/user-manage/index'),
         meta: {
           title: 'userManage',
@@ -68,6 +73,7 @@ export const asyncRoutes = [
       },
       {
         path: '/user/role',
+        name: 'userRole',
         component: () => import('@/views/role-list/index'),
         meta: {
           title: 'roleList',
@@ -77,6 +83,7 @@ export const asyncRoutes = [
       },
       {
         path: '/user/permission',
+        name: 'userPermission',
         component: () => import('@/views/permission-list/index'),
         meta: {
           title: 'permissionList',
@@ -97,7 +104,6 @@ export const asyncRoutes = [
     ]
   },
   {
-    // 不显示在导航栏之中
     path: '/excel',
     name: 'excel',
     component: Layout,
@@ -105,7 +111,7 @@ export const asyncRoutes = [
     meta: {
       title: 'excel',
       icon: 'excel',
-      roles: ['admin', 'edictor']
+      roles: ['admin', 'editor']
     },
     children: [
       {
@@ -146,6 +152,7 @@ export const asyncRoutes = [
   {
     path: '/article',
     component: Layout,
+    name: 'article',
     redirect: '/article/ranking',
     meta: {
       title: 'article',
@@ -155,6 +162,7 @@ export const asyncRoutes = [
       {
         path: '/article/ranking',
         component: () => import('@/views/article-ranking/index'),
+        name: 'articleRanking',
         meta: {
           title: 'articleRanking',
           icon: 'article-ranking'
@@ -163,6 +171,7 @@ export const asyncRoutes = [
       {
         path: '/article/:id',
         component: () => import('@/views/article-detail/index'),
+        name: 'articleDetail',
         hidden: true,
         meta: {
           title: 'articleDetail'
@@ -171,6 +180,7 @@ export const asyncRoutes = [
       {
         path: '/article/create',
         component: () => import('@/views/article-create/index'),
+        name: 'articelCreate',
         meta: {
           title: 'articleCreate',
           icon: 'article-create'
@@ -179,6 +189,7 @@ export const asyncRoutes = [
       {
         path: '/article/editor/:id',
         component: () => import('@/views/article-create/index'),
+        name: 'articleEditor',
         hidden: true,
         meta: {
           title: 'articleEditor'
@@ -187,9 +198,21 @@ export const asyncRoutes = [
     ]
   }
 ]
+
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...constantRoutes, ...asyncRoutes]
+  routes: constantRoutes
 })
+/**
+ * 初始化路由,重置路由
+ */
+export function resetRoute() {
+  const routes = store.getters.addRoutes
+  if (routes.length) {
+    for (const route of routes) {
+      router.removeRoute(route.name)
+    }
+  }
+}
 
 export default router

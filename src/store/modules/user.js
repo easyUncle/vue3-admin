@@ -1,6 +1,7 @@
 import { login, getUserInfo } from '@/api/user'
-import { getToken, removeToken, setTimestamp, setToken } from '../../utils/auth'
-import router from '@/router'
+import { getToken, setTimestamp, setToken } from '../../utils/auth'
+import { removeAllItem } from '@/utils/storage.js'
+import router, { resetRoute } from '@/router'
 
 export default {
   namespaced: true,
@@ -77,10 +78,11 @@ export default {
     // 登出
     logout({ commit }) {
       return new Promise((resolve, reject) => {
+        router.push('/login')
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
-        removeToken()
-        router.push('/login')
+        resetRoute()
+        removeAllItem()
         resolve()
       })
     }
