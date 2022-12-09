@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import router from './router'
 import store from './store'
 
@@ -30,6 +31,7 @@ router.beforeEach(async (to, from, next) => {
             router.addRoute(route)
           })
           // 解决页面刷新时，出现空白页面的问题
+          console.log(to)
           return next({ ...to, replace: true })
         }
       }

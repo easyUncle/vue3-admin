@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: () => ({
     sidebarOpened: true,
-    language: getItem(LANG) || 'en',
+    language: getItem(LANG) || 'zh',
     tagViewsList: getItem(TAGS_VIEWS) || []
   }),
 

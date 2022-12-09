@@ -44,7 +44,9 @@ export const constantRoutes = [
     name: '401',
     component: () => import('@/views/error-page/401'),
     hidden: true
-  }
+  },
+  // fix warning: No match found for location with path   https://github.com/vuejs/router/issues/359
+  { path: '/:pathMatch(.*)', component: () => import('@/views/error-page/404') }
 ]
 
 /**
