@@ -15,25 +15,25 @@ router.beforeEach(async (to, from, next) => {
       next('/')
     } else {
       const hasRole = store.getters.roles && store.getters.roles.length > 0
+      // console.log(hasRole)
       if (hasRole) {
         next()
       } else {
-        try {
+        // 这里需要添加一个限制条件，否则会进入死循环
+        if (!store.getters.addRoutes.length) {
           const { roles } = await store.dispatch('user/getUserInfo')
           const accessRoutes = await store.dispatch(
             'permission/generateRoutes',
             roles
           )
-          console.log(accessRoutes)
           accessRoutes.forEach(route => {
             router.addRoute(route)
           })
-          console.log(router.getRoutes())
-          return next()
-        } catch (error) {
-          next('/login')
+          // 解决页面刷新时，出现空白页面的问题
+          return next({ ...to, replace: true })
         }
       }
+      next()
     }
   } else {
     // 当用户未登陆时，不允许进入除 `login` 之外的其他页面

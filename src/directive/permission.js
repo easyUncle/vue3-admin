@@ -1,4 +1,5 @@
 import store from '@/store'
+import { nextTick } from 'vue'
 
 export default {
   mounted(el, binding) {
@@ -9,7 +10,8 @@ export default {
   }
 }
 
-const checkPermission = (el, binding) => {
+const checkPermission = async (el, binding) => {
+  await nextTick()
   const { value } = binding
   const points = store.getters.points
   const hasPermission = () => {

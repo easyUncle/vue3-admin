@@ -57,7 +57,6 @@ const actions = {
       } else {
         accessRoutes = filterAsyncRoutes(asyncRoutes, roles)
       }
-      console.log(accessRoutes)
       commit('SET_ROUTES', accessRoutes)
       resolve(accessRoutes)
     })

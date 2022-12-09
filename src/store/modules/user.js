@@ -61,8 +61,8 @@ export default {
               reject(new Error('Verification failed, please Login again.'))
             }
 
-            const { roles, name, avatar, introduction, point } = res
-
+            const { roles, name, avatar, introduction, points } = res
+            console.log(points)
             // roles must be a non-empty array
             if (!roles || roles.length <= 0) {
               reject(new Error('getInfo: roles must be a non-null array!'))
@@ -72,7 +72,7 @@ export default {
             commit('SET_NAME', name)
             commit('SET_AVATAR', avatar)
             commit('SET_INTRODUCTION', introduction)
-            commit('SET_POINTS', point)
+            commit('SET_POINTS', points)
             resolve(res)
           })
           .catch(err => {
