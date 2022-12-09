@@ -20,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         // 这里需要添加一个限制条件，否则会进入死循环
-        if (!store.getters.addRoutes.length) {
+        if (!store.getters.hasUserInfo) {
           const { roles } = await store.dispatch('user/getUserInfo')
           const accessRoutes = await store.dispatch(
             'permission/generateRoutes',

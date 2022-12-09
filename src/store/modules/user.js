@@ -7,16 +7,17 @@ export default {
   namespaced: true,
   state: () => ({
     token: getToken(),
-    userInfo: {},
+    hasUserInfo: false,
     avatar: '',
-    points: []
+    points: [],
+    rolse: []
   }),
   mutations: {
     SET_TOKEN(state, token) {
       state.token = token
     },
     SET_ROLES(state, roles) {
-      state.userInfo = roles
+      state.rolse = roles
     },
     SET_NAME(state, name) {
       state.name = name
@@ -29,6 +30,9 @@ export default {
     },
     SET_POINTS(state, points) {
       state.points = points
+    },
+    HAS_USER_INFO(state, flag) {
+      state.hasUserInfo = flag
     }
   },
   actions: {
@@ -62,7 +66,7 @@ export default {
             }
 
             const { roles, name, avatar, introduction, points } = res
-            console.log(points)
+            console.log(roles)
             // roles must be a non-empty array
             if (!roles || roles.length <= 0) {
               reject(new Error('getInfo: roles must be a non-null array!'))
@@ -73,6 +77,7 @@ export default {
             commit('SET_AVATAR', avatar)
             commit('SET_INTRODUCTION', introduction)
             commit('SET_POINTS', points)
+            commit('HAS_USER_INFO', true)
             resolve(res)
           })
           .catch(err => {
@@ -86,6 +91,7 @@ export default {
         router.push('/login')
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
+        commit('HAS_USER_INFO', false)
         resetRoute()
         removeAllItem()
         resolve()
