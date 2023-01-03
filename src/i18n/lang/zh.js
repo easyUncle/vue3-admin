@@ -34,7 +34,12 @@ export default {
     exportExcel: 'Excel导出',
     uploadExcel: 'Excel导入',
     selectExcel: 'Excel选择导出',
-    mergeHeaderExcel: 'Excel合并表头'
+    mergeHeaderExcel: 'Excel合并表头',
+    table: 'Table表格',
+    dynamicTable: '动态表格',
+    dragTable: '拖拽表格',
+    inlineEditTable: '行内编辑表格',
+    complexTable: '复杂表格'
   },
   toast: {
     switchLangSuccess: '切换语言成功'

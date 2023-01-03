@@ -93,6 +93,7 @@ const handleDownload = async () => {
   const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
   const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
   const data = formatJson(list.value, filterVal)
+  console.log(data)
   excel.export_json_to_excel({
     header: tHeader, //表头 必填
     data, //具体数据 必填

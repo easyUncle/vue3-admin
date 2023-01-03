@@ -34,7 +34,12 @@ export default {
     exportExcel: 'ExportExcel',
     uploadExcel: 'UploadExcel',
     selectExcel: 'SelectExcel',
-    mergeHeaderExcel: 'MergeHeaderExcel'
+    mergeHeaderExcel: 'MergeHeaderExcel',
+    table: 'Table',
+    dynamicTable: 'DynamicTable',
+    dragTable: 'DragTable',
+    inlineEditTable: 'InlineEditTable',
+    complexTable: 'ComplexTable'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

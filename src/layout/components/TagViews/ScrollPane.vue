@@ -12,8 +12,9 @@ const scrollRef = ref(null)
 const TAG_MARGIN = 4
 const scrollToTarget = async (tag, tagList) => {
   await nextTick()
+  console.log(scrollRef.value)
   const $container = scrollRef.value.$el
-  const $scrollWrap = scrollRef.value.wrap$
+  const $scrollWrap = scrollRef.value.wrapRef
   const scrollRefVal = scrollRef.value
 
   const currentIndex = tagList.findIndex(item => item === tag)
