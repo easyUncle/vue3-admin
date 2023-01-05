@@ -5,6 +5,7 @@ import articelRoute from './modules/article'
 import excelRoute from './modules/excel'
 import userRoute from './modules/user'
 import tableRoute from './modules/table'
+import componentRoutes from './modules/components-demo'
 
 /**
  * 公开路由
@@ -57,7 +58,13 @@ export const constantRoutes = [
 /**
  * 私有路由
  */
-export const asyncRoutes = [articelRoute, excelRoute, userRoute, tableRoute]
+export const asyncRoutes = [
+  articelRoute,
+  excelRoute,
+  userRoute,
+  tableRoute,
+  componentRoutes
+]
 
 const router = createRouter({
   history: createWebHashHistory(),

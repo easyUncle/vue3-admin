@@ -39,7 +39,9 @@ export default {
     dynamicTable: 'DynamicTable',
     dragTable: 'DragTable',
     inlineEditTable: 'InlineEditTable',
-    complexTable: 'ComplexTable'
+    complexTable: 'ComplexTable',
+    componentsDemo: 'ComponentsDemo',
+    editor: 'Editor'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

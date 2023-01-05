@@ -39,7 +39,9 @@ export default {
     dynamicTable: '动态表格',
     dragTable: '拖拽表格',
     inlineEditTable: '行内编辑表格',
-    complexTable: '复杂表格'
+    complexTable: '复杂表格',
+    componentsDemo: '组件Demo',
+    editor: '富文本编辑器'
   },
   toast: {
     switchLangSuccess: '切换语言成功'
