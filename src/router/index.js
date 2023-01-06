@@ -5,6 +5,7 @@ import articelRoute from './modules/article'
 import excelRoute from './modules/excel'
 import userRoute from './modules/user'
 import tableRoute from './modules/table'
+import chartsRoute from './modules/charts'
 import componentRoutes from './modules/components-demo'
 
 /**
@@ -59,11 +60,21 @@ export const constantRoutes = [
  * 私有路由
  */
 export const asyncRoutes = [
+  {
+    path: '/data-screen',
+    name: 'dataScreen',
+    component: () => import('@/views/data-screen'),
+    meta: {
+      title: 'dataScreen',
+      icon: 'chart'
+    }
+  },
   articelRoute,
   excelRoute,
   userRoute,
   tableRoute,
-  componentRoutes
+  componentRoutes,
+  chartsRoute
 ]
 
 const router = createRouter({

@@ -41,7 +41,15 @@ export default {
     inlineEditTable: '行内编辑表格',
     complexTable: '复杂表格',
     componentsDemo: '组件Demo',
-    editor: '富文本编辑器'
+    editor: '富文本编辑器',
+    charts: 'Charts',
+    pieChart: '饼图',
+    columnChart: '柱图',
+    lineChart: '折线图',
+    nestedChart: '嵌套环形图',
+    radarChart: '雷达图',
+    waterChart: '水球图',
+    dataScreen: '数据大屏'
   },
   toast: {
     switchLangSuccess: '切换语言成功'

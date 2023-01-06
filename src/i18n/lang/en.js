@@ -41,7 +41,15 @@ export default {
     inlineEditTable: 'InlineEditTable',
     complexTable: 'ComplexTable',
     componentsDemo: 'ComponentsDemo',
-    editor: 'Editor'
+    editor: 'Editor',
+    charts: 'Charts',
+    pieChart: 'PieChart',
+    columnChart: 'ColumnChart',
+    lineChart: 'LineChart',
+    nestedChart: 'NestedChart',
+    radarChart: 'RadarChart',
+    waterChart: 'WaterChart',
+    dataScreen: 'DataScreen'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'
