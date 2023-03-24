@@ -28,6 +28,7 @@
     "screenfull": "^5.1.0",
     "script-loader": "^0.7.2",
     "sortablejs": "^1.15.0",
+    "three": "^0.149.0",
     "vue": "^3.2.41",
     "vue-i18n": "^9.3.0-beta.7",
     "vue-router": "^4.1.6",
@@ -58,13 +59,16 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
     "husky": "^7.0.1",
-    "mockjs": "^1.1.0",
+    "mockjs": "1.0.1-beta3",
     "prettier": "^2.7.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
     "script-loader": "^0.7.2",
     "svg-sprite-loader": "^6.0.9",
-    "vue-cli-plugin-element-plus": "~0.0.13"
+    "url-loader": "^4.1.1",
+    "vue-cli-plugin-element-plus": "~0.0.13",
+    "vue-pdf-embed": "^1.1.5",
+    "vue3-pdfjs": "^0.1.6"
   },
   "config": {
     "commitizen": {

@@ -49,7 +49,9 @@ export default {
     nestedChart: '嵌套环形图',
     radarChart: '雷达图',
     waterChart: '水球图',
-    dataScreen: '数据大屏'
+    dataScreen: '数据大屏',
+    '3dCar': '3d汽车展示',
+    PDF: 'PDF'
   },
   toast: {
     switchLangSuccess: '切换语言成功'

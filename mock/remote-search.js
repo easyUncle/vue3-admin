@@ -4,11 +4,9 @@ const NameList = []
 const count = 100
 
 for (let i = 0; i < count; i++) {
-  NameList.push(
-    Mock.mock({
-      name: '@first'
-    })
-  )
+  NameList.push(Mock.mock({
+    name: '@first'
+  }))
 }
 NameList.push({ name: 'mock-Pan' })
 
@@ -39,15 +37,13 @@ module.exports = [
         code: 20000,
         data: {
           total: 20,
-          'items|20': [
-            {
-              order_no: '@guid()',
-              timestamp: +Mock.Random.date('T'),
-              username: '@name()',
-              price: '@float(1000, 15000, 0, 2)',
-              'status|1': ['success', 'pending']
-            }
-          ]
+          'items|20': [{
+            order_no: '@guid()',
+            timestamp: +Mock.Random.date('T'),
+            username: '@name()',
+            price: '@float(1000, 15000, 0, 2)',
+            'status|1': ['success', 'pending']
+          }]
         }
       }
     }

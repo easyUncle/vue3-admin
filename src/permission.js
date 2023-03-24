@@ -27,6 +27,7 @@ router.beforeEach(async (to, from, next) => {
             'permission/generateRoutes',
             roles
           )
+          console.log(accessRoutes)
           accessRoutes.forEach(route => {
             router.addRoute(route)
           })

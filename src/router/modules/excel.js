@@ -37,7 +37,7 @@ const excelRoute = {
     },
     {
       path: '/excel/merge-header-excel',
-      name: 'mergeHeaderExcel',
+      name: 'mergeExcel',
       component: () => import('@/views/excel/MergeHeaderExcel'),
       meta: {
         title: 'mergeHeaderExcel',

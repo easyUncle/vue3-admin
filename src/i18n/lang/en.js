@@ -49,7 +49,9 @@ export default {
     nestedChart: 'NestedChart',
     radarChart: 'RadarChart',
     waterChart: 'WaterChart',
-    dataScreen: 'DataScreen'
+    dataScreen: 'DataScreen',
+    '3dCar': '3dCarPlay',
+    PDF: 'PDF'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

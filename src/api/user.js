@@ -6,7 +6,7 @@ import request from '@/utils/request'
 
 export const login = data => {
   return request({
-    url: '/login',
+    url: '/vue-element-admin/user/login',
     method: 'POST',
     data
   })
