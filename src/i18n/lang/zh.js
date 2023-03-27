@@ -51,7 +51,7 @@ export default {
     waterChart: '水球图',
     dataScreen: '数据大屏',
     '3dCar': '3d汽车展示',
-    PDF: 'PDF'
+    PDF: 'PDF预览'
   },
   toast: {
     switchLangSuccess: '切换语言成功'

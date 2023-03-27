@@ -51,7 +51,7 @@ export default {
     waterChart: 'WaterChart',
     dataScreen: 'DataScreen',
     '3dCar': '3dCarPlay',
-    PDF: 'PDF'
+    PDF: 'PDF Preview'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'

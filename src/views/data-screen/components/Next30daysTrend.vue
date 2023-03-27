@@ -153,7 +153,7 @@ onMounted(async () => {
 .echarts {
   width: 100%;
   height: 100%;
-  ::v-deep(.custom-tooltip) {
+  :deep(.custom-tooltip) {
     height: 70px;
     width: 250px;
     display: flex;

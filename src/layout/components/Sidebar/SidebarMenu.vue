@@ -35,7 +35,7 @@ const route = useRoute()
 const permissionRoutes = computed(() =>
   generateRoutes(filterRoutes(router.getRoutes()))
 )
-
+console.log(permissionRoutes.value)
 const activeMenu = computed(() => {
   const { path } = route
   return path

@@ -71,12 +71,19 @@ export const asyncRoutes = [
   },
   {
     path: '/pdf',
-    name: 'pdf',
-    component: () => import('@/views/pdf/pdf.vue'),
-    meta: {
-      title: 'PDF',
-      icon: 'chart'
-    }
+    component: Layout,
+    redirect: '/pdf-preview',
+    children: [
+      {
+        path: '/pdf-preview',
+        name: 'PDF',
+        component: () => import('@/views/pdf/pdf.vue'),
+        meta: {
+          title: 'PDF',
+          icon: 'excel'
+        }
+      }
+    ]
   },
   articelRoute,
   excelRoute,
