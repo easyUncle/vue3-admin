@@ -10,7 +10,6 @@ import i18n from '@/i18n'
 import installElIcon from './plugins/el-icon'
 import installFilters from './filters'
 import installDerective from './directive'
-import installVuePdf from './plugins/pdf'
 
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
@@ -22,5 +21,4 @@ installSvgIcon(app)
 installElIcon(app)
 installFilters(app)
 installDerective(app)
-installVuePdf(app)
 app.use(store).use(router).use(i18n).mount('#app')

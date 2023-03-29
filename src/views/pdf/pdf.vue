@@ -1,20 +1,14 @@
 <template>
-  <div class="pdf-preview" @scroll="handleScroll">
+  <div class="pdf-preview" @scroll="handleScroll" v-loading="loading">
     <vue-pdf-embed
       :source="pageObj.source"
       :page="pageObj.pageNum"
       :style="scaleStyle"
+      ref="pdfRef"
       class="pdf-main"
-      v-show="flag"
-    />
-    <vue-pdf-embed
-      :source="pageObj.source"
-      :page="pageObj.pageNum"
-      :style="scaleStyle"
-      class="pdf-main"
-      v-show="!flag"
-    />
-    <div class="wrapper">
+      @rendered="handleDocumentRender"
+    ></vue-pdf-embed>
+    <div class="wrapper" v-if="!loading">
       <span @click="prePage">上一页</span>
       <span @click="nextPage">下一页</span>
       <span>{{ pageObj.pageNum }}/{{ pageObj.totalPage }}</span>
@@ -26,7 +20,6 @@
 
 <script setup>
 import { onMounted, reactive, computed, ref } from 'vue'
-import { createLoadingTask } from 'vue3-pdfjs/esm'
 import VuePdfEmbed from 'vue-pdf-embed'
 import pdfUrl from '@/assets/test.pdf'
 
@@ -37,16 +30,18 @@ const pageObj = reactive({
   totalPage: 0
 })
 
-onMounted(() => {
-  const loadingTask = createLoadingTask(pdfUrl)
-  loadingTask.promise.then(pdf => {
-    pageObj.totalPage = pdf.numPages
-  })
-})
+onMounted(() => {})
 
 const scaleStyle = computed(() => `transform:scale(${pageObj.scale})`)
 
 // method
+const loading = ref(true)
+const pdfRef = ref(null)
+const handleDocumentRender = () => {
+  loading.value = false
+  pageObj.totalPage = pdfRef.value.pageCount
+  console.log(pdfRef.value)
+}
 const prePage = function () {
   if (pageObj.pageNum <= 1) {
     return false
@@ -71,9 +66,6 @@ const handleScaleDown = () => {
   }
   pageObj.scale -= 0.1
 }
-
-const flag = ref(true)
-const handleScroll = e => {}
 </script>
 
 <style lang="scss" scoped>

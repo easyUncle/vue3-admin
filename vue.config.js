@@ -50,5 +50,27 @@ module.exports = {
       .use('url-loader')
       .loader('url-loader')
       .end()
+    config.module
+      .rule('sourcemap')
+      .test(/\.js$/)
+      .enforce()
+      .pre()
+      .use('source-map-loader')
+      .loader('source-map-loader')
+      .end()
+    // pdf-dist
+    config.module
+      .rule('pdfjs-dist')
+      .test({
+        test: /\.js$/,
+        include: path.join(__dirname, 'node_modules/pdfjs-dist')
+      })
+      .use('babel-loader')
+      .loader('babel-loader')
+      .options({
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-proposal-optional-chaining']
+      })
+      .end()
   }
 }
